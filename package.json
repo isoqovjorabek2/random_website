@@ -1,0 +1,14 @@
+{
+  "name": "prank-website",
+  "version": "1.0.0",
+  "description": "Simple prank website with IP logging for educational purposes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "logs": "node scripts/logs.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

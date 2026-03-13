@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYSTEM ALERT</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      min-height: 100vh;
+      background: #0a0a0a;
+      color: #00ff41;
+      overflow: hidden;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+      pointer-events: none;
+    }
+    .scan-lines {
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.03) 2px,
+        rgba(0, 255, 65, 0.03) 4px
+      );
+      pointer-events: none;
+    }
+    .container {
+      min-height: 100vh;
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 1px solid #00ff41;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .header h1 {
+      font-size: 1.1rem;
+      color: #ff0040;
+      letter-spacing: 0.2em;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0.5; }
+    }
+    .log {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: #00ff41;
+      margin-bottom: 1.5rem;
+    }
+    .log .cmd { color: #888; }
+    .log .err { color: #ff0040; }
+    .log .warn { color: #ffaa00; }
+    .log .success { color: #00ff41; }
+    .progress-section {
+      margin: 1.5rem 0;
+    }
+    .progress-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+    .progress-bar {
+      height: 4px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #ff0040;
+      width: 0%;
+      animation: fill 3s ease-out forwards;
+    }
+    @keyframes fill {
+      to { width: 100%; }
+    }
+    .files {
+      margin: 1.5rem 0;
+      font-size: 0.75rem;
+      color: #666;
+    }
+    .files div {
+      padding: 0.2rem 0;
+      border-bottom: 1px solid #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+    }
+    .files .encrypted { color: #ff0040; }
+    .ransom-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 1px solid #ff0040;
+      background: rgba(255, 0, 64, 0.05);
+    }
+    .ransom-box h2 {
+      font-size: 1rem;
+      color: #ff0040;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+    .ransom-box p {
+      font-size: 0.85rem;
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    .btc {
+      font-size: 0.75rem;
+      color: #00ff41;
+      word-break: break-all;
+      margin: 0.5rem 0;
+    }
+    .deadline {
+      color: #ffaa00;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
+    .btn {
+      margin-top: 1rem;
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      border: 1px solid #00ff41;
+      background: transparent;
+      color: #00ff41;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      background: #00ff41;
+      color: #0a0a0a;
+    }
+    .reveal {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .reveal.show { display: block; }
+    .prank.hidden { display: none !important; }
+    .reveal .icon { font-size: 4rem; margin-bottom: 1rem; }
+    .reveal h2 { color: #00ff41; font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .reveal p { color: #888; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="scan-lines"></div>
+  <div class="overlay"></div>
+
+  <div class="container">
+    <div class="prank">
+      <div class="header">
+        <h1>⚠ ACCESS DENIED — UNAUTHORIZED SYSTEM ACCESS DETECTED</h1>
+      </div>
+
+      <div class="log">
+        <div><span class="cmd">$</span> nmap -sV 192.168.1.0/24</div>
+        <div><span class="success">[*]</span> Host identified. Exploiting CVE-2024-XXXX...</div>
+        <div><span class="success">[*]</span> Payload delivered. Establishing persistence...</div>
+        <div><span class="err">[!]</span> Your IP address has been logged and transmitted.</div>
+        <div><span class="success">[*]</span> Initiating encryption sequence...</div>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-label">ENCRYPTING FILES...</div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="files">
+        <div><span>Documents\passwords.txt</span><span class="encrypted">[ENCRYPTED]</span></div>
+        <div><span>Pictures\vacation_photos</span><span class="encrypted">[ENCRYPTED]</span></div>
+        <div><span>Desktop\important.xlsx</span><span class="encrypted">[ENCRYPTED]</span></div>
+        <div><span>...</span><span class="encrypted">[ENCRYPTED]</span></div>
+      </div>
+
+      <div class="ransom-box">
+        <h2>YOUR FILES HAVE BEEN ENCRYPTED</h2>
+        <p>All your personal files, documents, and photos have been encrypted with military-grade encryption.</p>
+        <p>To recover your data, you must pay 0.05 BTC to the address below within 72 hours.</p>
+        <p class="btc">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
+        <p class="deadline">DEADLINE: 72 HOURS — After this, your decryption key will be destroyed.</p>
+        <p>Do not attempt to restore files without paying. You will lose everything.</p>
+        <button class="btn" onclick="revealPrank()">PAY RANSOM (DECRYPT)</button>
+      </div>
+    </div>
+
+    <div class="reveal" id="reveal">
+      <div class="icon">😄</div>
+      <h2>GOTCHA!</h2>
+      <p>This was a harmless prank. Nothing was encrypted. Your device is completely fine.</p>
+      <p>Hope we gave you a scare! Use responsibly. 😅</p>
+    </div>
+  </div>
+
+  <script>
+    function revealPrank() {
+      document.querySelector('.prank').classList.add('hidden');
+      document.getElementById('reveal').classList.add('show');
+    }
+  </script>
+</body>
+</html>

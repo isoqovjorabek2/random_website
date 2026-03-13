@@ -1,0 +1,13 @@
+services:
+  prank-site:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATA_DIR=/data
+    volumes:
+      - visitor-data:/data
+    restart: unless-stopped
+
+volumes:
+  visitor-data:

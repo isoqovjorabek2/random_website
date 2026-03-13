@@ -8,10 +8,7 @@ const LOG_FILE = path.join(__dirname, process.env.DATA_DIR || '.', 'visitors.jso
 
 app.set('trust proxy', 1);
 
-// Serve static files from public folder
-app.use(express.static('public'));
-
-// Middleware to log visitor IP
+// Middleware to log visitor IP (must run before static so all requests get logged)
 app.use((req, res, next) => {
   const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown';
   const timestamp = new Date().toISOString();
@@ -30,6 +27,9 @@ app.use((req, res, next) => {
   fs.writeFileSync(LOG_FILE, JSON.stringify(logs, null, 2));
   next();
 });
+
+// Serve static files from public folder
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
